@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>스프링을 이용한 MVC</title>
 </head>
 <body>
 	<table border="1" width="50%" align="center" >
