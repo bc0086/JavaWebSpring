@@ -20,36 +20,35 @@ class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	<property name="prefix" value="/WEB-INF/views/" /> 
 	<property name="suffix" value=".jsp" />
 </bean>
-<bean id="memberController" class="com.spring.member.controller.MemberControllerImpl">
 
+<!-- memberController빈에 methodNameResolver 빈과 memberService빈을 주입함 -->
+<bean id="memberController" 
+class="com.spring.member.controller.MemberControllerImpl">
+	<property name="methodNameResolver">
+		<ref local="methodResolver" />
+	</property>
+	<property name="memberService" ref="memberService" />
 </bean>
 
-<!-- URL요청명이 /test/*.do로 시작되면 userController를 요청함 -->
-<bean id="userUrlMapping"
-class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+<!-- URL 요청명에 대해 동일한 이름의 메서드를 호출하도록 설정함 -->
+<bean id="methodResolver" 
+class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
 	<property name="mappings">
 		<props>
-			<prop key="/pro21ex02/*.do">userController</prop>
+			<prop key="/member/listMembers.do">listMembers</prop>
+			<prop key="/member/addMember.do">addMember</prop>
+			<prop key="/member/memberForm.do">memberForm</prop>
+			<prop key="/member/memberDetail.do">memberDetail</prop>
 		</props>
 	</property>
 </bean>
 
-<!-- methodNameResorver 프로퍼티에 userMethodNameResolver를 주입해서 지정한 요청명에 대해
-	 직접 메서드를 호출하게 됨 -->
-<bean id="userController" class="com.spring.pro21ex02.UserController">
-	<property name="methodNameResolver">
-		<ref local="userMethodNameResolver" />
-	</property>
-</bean>
-
-<!-- PropertiesMethodNameResolver를 이용해 /pro21ex02/login.do로 요청하면 userController의
-	 login 메서드를 호출함 -->
-<bean id="userMethodNameResolver"  class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
+<!-- member로 요청하는 모든 요청에 대해서는 memberController를 실행토록 설정 -->
+<bean id="urlMapping" 
+class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 	<property name="mappings">
 		<props>
-			<prop key="/pro21ex02/login.do">login</prop>
-			<prop key="/pro21ex02/memberInfo.do">memberInfo</prop>
-				<!-- URL요청명과 메서드 이름을 동일하게 하여 회원정보를 요청 -->
+			<prop key="/member/*.do">memberController</prop>
 		</props>
 	</property>
 </bean>
