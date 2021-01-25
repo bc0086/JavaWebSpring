@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:aop="http://www.springframework.org/schema/aop"
@@ -10,9 +10,9 @@ http://www.springframework.org/schema/aop
 http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context-3.0.xsd">
-
-	<!-- memberService빈의 memberDAO 속성에 memberDAO 빈을 주입합니다. -->
-	<bean id="memberService" class="com.spring.member.service.MemberServiceImpl">
-		<property name="memberDAO" ref="memberDAO" />
-	</bean>
+ 
+ 	<!-- memberService빈의 memberDAO 속성에 memberDAO빈을 주입함 -->
+	<bean id="memberService" class="com.spring.pro22member.service.MemberServiceImpl">
+    	<property name="memberDAO" ref="memberDAO"/>
+   	</bean>
 </beans>
