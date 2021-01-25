@@ -12,7 +12,7 @@ http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 	<!-- memberService빈의 memberDAO 속성에 memberDAO 빈을 주입합니다. -->
-	<bean id="memberService" class="com.spring.member.service.MemberServiceImpl">
+	<bean id="memberService" class="com.spring.pro22member.service.MemberServiceImpl">
 		<property name="memberDAO" ref="memberDAO" />
 	</bean>
 </beans>
