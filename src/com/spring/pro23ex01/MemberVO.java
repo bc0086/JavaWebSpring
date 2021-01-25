@@ -1,4 +1,4 @@
-package com.spring.pro23;
+package com.spring.pro23ex01;
 
 import java.sql.Date;
 

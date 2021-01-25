@@ -1,4 +1,4 @@
-package com.spring.pro23;
+package com.spring.pro23ex02;
 
 import java.io.Reader;
 import java.util.List;
@@ -29,16 +29,21 @@ public class MemberDAO {
 		return sqlMapper;
 	}
 
-	public List<MemberVO> selectAllMemberList() {
+	public String selectName() {
 		sqlMapper = getInstance();
-		
-		// 실제 member.xml의 SQL문을 호출하는 데 사용되는 SqlSession 객체를 가져옴 
 		SqlSession session = sqlMapper.openSession();
-		List<MemberVO> memlist = null;
 		
-		/* 여러 개의 레코드를 조회하므로 selectList() 메서드에 실행하고자 하는 SQL문의
-		 * id를 인자로 전달함 */
-		memlist = session.selectList("mapper.member.selectAllMemberList");
-		return memlist;
+		// selectOne() 메서드로 인자로 지정한 SQL문을 실행한 후 한 개의 데이터(문자열) 반환
+		String name = session.selectOne("mapper.member.selectName");
+		return name;
+	}
+	
+	public int selectPwd() {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		
+		// selectOne() 메서드로 인자로 지정한 SQL문을 실행한 후 한 개의 데이터(정수) 반환
+		int pwd = session.selectOne("mapper.member.selectPwd");
+		return pwd;
 	}
 }

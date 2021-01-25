@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<!-- DAO에서 SQL문으로 값을 전달할 때 또는 SQL문을 실행한 후 가져온 값을
 		 DAO로 전달할 때 사용할 빈을 생성함 -->
 	<typeAliases>
-		<typeAlias type="com.spring.pro23.MemberVO" alias="memberVO"/>
+		<typeAlias type="com.spring.pro23ex01.MemberVO" alias="memberVO"/>
 	</typeAliases>
 	
 	<environments default="development">

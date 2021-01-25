@@ -1,6 +1,7 @@
-package com.spring.pro23;
+package com.spring.pro23ex01;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -18,7 +19,10 @@ public class MemberServlet extends HttpServlet {
 		
 		// MemberDAO객체를 생성하고 selectAllMemberList()를 호출함
 		MemberDAO dao = new MemberDAO();
-		List<MemberVO> membersList = dao.selectAllMemberList();
+		
+//		List<MemberVO> membersList = dao.selectAllMemberList();
+		
+		List<HashMap<String, String>> membersList = dao.selectAllMemberList();
 		request.setAttribute("membersList", membersList);
 		
 		RequestDispatcher dispatch = request.getRequestDispatcher("pro23/listMembers.jsp");
