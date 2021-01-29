@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/mem.do")
+//@WebServlet("/mem.do")
 public class MemberServlet extends HttpServlet {
 	private void doHandle(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
@@ -25,7 +25,7 @@ public class MemberServlet extends HttpServlet {
 		List<HashMap<String, String>> membersList = dao.selectAllMemberList();
 		request.setAttribute("membersList", membersList);
 		
-		RequestDispatcher dispatch = request.getRequestDispatcher("pro23/listMembers.jsp");
+		RequestDispatcher dispatch = request.getRequestDispatcher("pro23ex01/listMembers.jsp");
 		dispatch.forward(request, response);
 	}
 	
