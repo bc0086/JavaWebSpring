@@ -111,6 +111,19 @@ public class MemberServlet extends HttpServlet {
 			dao.deleteMember(id);
 			
 			nextPage = "mem4.do?action=listMembers";
+		
+		// 동적태그 이용한 회원 정보 조회
+		} else if(action.equals("searchMember")) {
+			String name = request.getParameter("name");
+			String email = request.getParameter("email");
+			
+			memberVO.setName(name);
+			memberVO.setEmail(email);
+			
+			List<MemberVO> membersList = dao.searchMember(memberVO);
+			request.setAttribute("membersList", membersList);
+			
+			nextPage = "pro23ex04/listMembers.jsp";
 		}
 		
 		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);

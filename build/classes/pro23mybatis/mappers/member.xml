@@ -98,4 +98,58 @@
 		]]>
 	</delete>
 	
+	<!-- 동적태그 where 이용한 회원 정보 조회 -->
+	<select id="searchMember" parameterType="memberVO" resultMap="memResult">
+		<![CDATA[
+			select *
+			from t_member
+		]]>
+		<where>
+			<if test="name != '' and name != null">
+				name = #{name}
+			</if>
+			<if test="email != '' and email != null">
+				and email = #{email}
+			</if>
+		</where>
+		order by joinDate desc
+	</select>
+	
+	<!-- 동적태그 choose 이용한 회원 정보 조회 -->
+	<!-- <select id="searchMember" parameterType="memberVO" resultMap="memResult">
+		<![CDATA[
+			select *
+			from t_member
+		]]>
+		<where>
+			<choose>
+				<when test="name != '' and name != null and email !='' and email != null">
+					name = #{name} and email=#{email}
+				</when>
+				<when test = "name != '' and name != null">
+					name = #{name}
+				</when>
+				<when test = "email != '' and email != null">
+					email = #{email}
+				</when>
+			</choose>
+		</where>
+		order by joinDate desc
+	</select> -->
+	
+	<!-- 동적태그 foreach 이용한 회원 정보 조회 -->
+	<select id="foreachSearch" resultMap="memResult" parameterType="java.util.Map">
+		<!-- SQL문에 List인스턴스나 배열을 전달하면 자동으로 Map에 전달되어 이름을 키로 사용
+			 List인스턴스는 list를 키로 사용하고 배열은 array를 키로 사용함. -->
+		<![CDATA[
+			select *
+			from t_member
+		]]>
+		where name in
+		<foreach collection="list" item="item" open="(" separator="," close=")" >
+			#{item} <!-- foreach문을 이용해 반복해서 list의 값을 표시함 -->
+		</foreach>
+		order by joinDate desc
+	</select>
+	
 </mapper>

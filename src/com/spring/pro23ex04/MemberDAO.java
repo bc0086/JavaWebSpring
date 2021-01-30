@@ -107,6 +107,15 @@ public class MemberDAO {
 		session.commit();
 		return result;
 	}
+
+	// 동적태그 이용한 회원 정보 조회
+	public List<MemberVO> searchMember(MemberVO memberVO) {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		List<MemberVO> list = session.selectList("mapper.member.searchMember", memberVO);
+			// 회원 검색창에서 전달된 이름과 나이 값을 memberVO에 설정하여 SQL문으로 전달
+		return list;
+	}
 	
 //	// HashMap을 이용한 모든 회원 정보 조회
 //	public List<HashMap<String, String>> selectAllMemberList() { 
