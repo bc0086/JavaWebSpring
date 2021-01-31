@@ -108,13 +108,33 @@ public class MemberDAO {
 		return result;
 	}
 
-	// 동적태그 이용한 회원 정보 조회
+	// 동적태그 choose 이용한 회원 정보 조회
 	public List<MemberVO> searchMember(MemberVO memberVO) {
 		sqlMapper = getInstance();
 		SqlSession session = sqlMapper.openSession();
 		List<MemberVO> list = session.selectList("mapper.member.searchMember", memberVO);
 			// 회원 검색창에서 전달된 이름과 나이 값을 memberVO에 설정하여 SQL문으로 전달
 		return list;
+	}
+
+	// 동적태그 foreach 이용한 회원 정보 조회
+	public List<MemberVO> foreachSelect(List nameList) {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		List list = session.selectList("mapper.member.foreachSelect", nameList);
+			// 검색 이름이 저장된 nameList를 SQL문으로 전달함. 
+		return list;
+	}
+
+	// 동적태그 foreach 이용한 회원 정보 추가 하기
+	public int foreachInsert(List<MemberVO> memList) {
+		sqlMapper = getInstance();
+		SqlSession session = sqlMapper.openSession();
+		int result = session.insert("mapper.member.foreachInsert", memList);
+			// 회원 정보가 저장된 memList를 SQL문으로 전달함.
+			// insert문이 성공적으로 실행되면 양수를 반환함.
+		session.commit(); // 반드시 commit()을 호출할 것.
+		return result;
 	}
 	
 //	// HashMap을 이용한 모든 회원 정보 조회
