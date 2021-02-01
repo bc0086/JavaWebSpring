@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.spring.pro23ex01.MemberVO;
 
 
-@WebServlet("/mem4.do")
+//@WebServlet("/mem4.do")
 public class MemberServlet extends HttpServlet {
 	private void doHandle(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
