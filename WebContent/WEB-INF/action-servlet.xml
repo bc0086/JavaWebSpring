@@ -5,11 +5,11 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans   
-http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-http://www.springframework.org/schema/aop
-http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
-http://www.springframework.org/schema/context
-http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 <!-- pro21용입니다.-->
 <!-- <bean id="simpleUrlController" class="com.spring.pro21ex01.SimpleUrlController"/>
@@ -118,7 +118,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	class="com.spring.pro24member.controller.MemberControllerImpl">
     	<!-- memberController빈에 methodNameResolver빈과 memberService빈을 주입함 -->
     	<property name="methodNameResolver">
-        	<ref local="methodResolver"/>
+        	<ref local="memberMethodResolver"/>
       	</property>
       	
       	<property name="memberService" ref="memberService"/>
@@ -129,10 +129,12 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
      	<property  name="mappings" >
 	        <!-- URL 요청명에 대해 동일한 이름의 메서드를 호출하도록 설정함 -->
 	        <props>
-		    	<prop key="/member/listMembers.do" >listMembers</prop>
-		        <prop key="/member/addMember.do" >addMember</prop>
-		        <prop key="/member/memberForm.do" >memberForm</prop>
-		        <prop key="/member/memberDetail.do">memberDetail</prop>
+		        <prop key="/member/listMembers.do" >listMembers</prop>
+	          	<prop key="/member/addMember.do" >addMember</prop>
+	          	<prop key="/member/removeMember.do">removeMember</prop>
+	          	<prop key="/member/modMember.do">modMember</prop>
+	          	<prop key="/member/memberForm.do" >form</prop>
+	          	<prop key="/member/modMemberForm.do" >form</prop>
        		</props>
 		</property>
    	</bean>

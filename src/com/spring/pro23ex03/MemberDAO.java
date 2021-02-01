@@ -51,7 +51,7 @@ public class MemberDAO {
 		SqlSession session = sqlMapper.openSession();
 
 		// 서블릿에서 넘어온 id의 값을 selectOne() 호출 시 해당 SQL문의 조건값으로 전달
-		MemberVO memberVO = session.selectOne("mapper.member.selectMemberById", id);
+		MemberVO memberVO = (MemberVO) session.selectOne("mapper.member.selectMemberById", id);
 		return memberVO;
 	}
 

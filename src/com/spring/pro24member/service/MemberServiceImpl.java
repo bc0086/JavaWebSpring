@@ -9,13 +9,15 @@ import com.spring.pro24member.vo.MemberVO;
 
 public class MemberServiceImpl implements MemberService{
 	private MemberDAO memberDAO;
+	
+	// 속성 memberDAO에 memberDAO빈을 주입하기 위해 setter를 구현함
 	public void setMemberDAO(MemberDAO memberDAO) {
 		this.memberDAO = memberDAO;
 	}
 	
 	@Override
-	public List<MemberVO> listMembers() throws DataAccessException {
-		List<MemberVO> membersList = null;
+	public List listMembers() throws DataAccessException {
+		List membersList = null;
 		membersList = memberDAO.selectAllMemberList();
 		return membersList;
 	}
@@ -28,5 +30,11 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int removeMember(String id) throws DataAccessException {
 		return memberDAO.deleteMember(id);
+	}
+	
+	@Override
+	public MemberVO findMember(String id) throws DataAccessException {
+		MemberVO memberVO = memberDAO.selectMember(id);
+		return memberVO;
 	}
 }

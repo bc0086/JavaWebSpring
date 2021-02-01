@@ -12,4 +12,7 @@ public interface MemberService {
 	public int addMember(MemberVO membeVO) throws DataAccessException;
 	
 	public int removeMember(String id) throws DataAccessException;
+
+	public MemberVO findMember(String id) throws DataAccessException;
+
 }

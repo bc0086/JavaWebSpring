@@ -34,7 +34,7 @@ public class MemberDAO {
 		SqlSession session = sqlMapper.openSession();
 		
 		// selectOne() 메서드로 인자로 지정한 SQL문을 실행한 후 한 개의 데이터(문자열) 반환
-		String name = session.selectOne("mapper.member.selectName");
+		String name = (String) session.selectOne("mapper.member.selectName");
 		return name;
 	}
 	
@@ -43,7 +43,7 @@ public class MemberDAO {
 		SqlSession session = sqlMapper.openSession();
 		
 		// selectOne() 메서드로 인자로 지정한 SQL문을 실행한 후 한 개의 데이터(정수) 반환
-		int pwd = session.selectOne("mapper.member.selectPwd");
+		int pwd = (int) session.selectOne("mapper.member.selectPwd");
 		return pwd;
 	}
 }
