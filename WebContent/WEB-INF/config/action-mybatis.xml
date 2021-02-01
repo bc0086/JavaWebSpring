@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+  
+	<bean  id="propertyPlaceholderConfigurer"
+    class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" >
+    	<property name="locations" >
+        	<list>
+            	<!-- propertyPlaceholderConfigurer클래스를 이용해 
+            		 jdbc.properties 파일에서 데이터베이스 연결에 필요한 설정정보 가져옴 -->
+            	<value>/WEB-INF/config/jdbc.properties</value>
+         	</list>
+      	</property>
+   	</bean>
+    
+    <!-- 마이바티스에서 제공하는 PooledDataSource 클래스를 이용해서 dataSource 빈을 생성 -->
+    <bean id="dataSource" class="org.apache.ibatis.datasource.pooled.PooledDataSource">
+		<property name="driver" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+	
+	<!-- SqlSessionFactoryBean클래스를 이용해 dataSource속성에 dataSource빈을 설정함 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:pro24mybatis/model/modelConfig.xml" />
+		<property name="mapperLocations" value="classpath:pro24mybatis/mappers/*.xml"></property>
+	</bean>
+	
+	<!-- SqlSessionTemplate클래스를 이용해 sqlSession빈을 생성 -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
+	</bean>
+	
+	<!-- sqlSession 빈을 memberDAO 빈 속성에 주입함. -->
+   	<bean id="memberDAO" class="com.spring.pro24member.dao.MemberDAOImpl" >
+    	<property name="sqlSession" ref="sqlSession"  />
+   	</bean> 
+</beans>
