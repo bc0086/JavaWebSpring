@@ -15,7 +15,12 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
    	</bean > -->
    	
    	<!-- pro24용입니다. -->
-	<bean id="memberService" class="com.spring.pro24member.service.MemberServiceImpl">
+	<!-- <bean id="memberService" class="com.spring.pro24member.service.MemberServiceImpl">
     	<property name="memberDAO" ref="memberDAO"/>
+   	</bean> -->
+   	
+   	<!-- pro25용입니다. -->
+   	<bean id="accService" class="com.spring.pro25account.AccountService">
+    	<property name="accDAO" ref="accDAO"/>
    	</bean>
 </beans>

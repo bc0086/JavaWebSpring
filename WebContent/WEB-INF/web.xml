@@ -25,7 +25,7 @@
     	<param-name>contextConfigLocation</param-name>
       	<param-value>
         	/WEB-INF/config/action-service.xml
-        	/WEB-INF/config/action-mybatis.xml <!-- pro24용 -->
+        	/WEB-INF/config/action-mybatis.xml 
           	<!-- /WEB-INF/config/action-dataSource.xml -->
       	</param-value>
    	</context-param>

@@ -106,17 +106,17 @@
 <!-- /pro23용 -->
 
 <!-- pro24용입니다. -->
-	<bean id="viewResolver" 
+	<!-- <bean id="viewResolver" 
 	class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
 		<property  name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
-	    <!-- URL요청명에 대해 /WEB-INF/views 폴더의 JSP를 선택함 -->
+	    URL요청명에 대해 /WEB-INF/views 폴더의 JSP를 선택함
 	    <property  name="prefix" value="/WEB-INF/views/pro24/" />
 	    <property  name="suffix" value=".jsp" />
 	</bean>
 
 	<bean id="memberController" 
 	class="com.spring.pro24member.controller.MemberControllerImpl">
-    	<!-- memberController빈에 methodNameResolver빈과 memberService빈을 주입함 -->
+    	memberController빈에 methodNameResolver빈과 memberService빈을 주입함
     	<property name="methodNameResolver">
         	<ref local="memberMethodResolver"/>
       	</property>
@@ -127,7 +127,7 @@
     <bean  id="memberMethodResolver"
    	class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver" >
      	<property  name="mappings" >
-	        <!-- URL 요청명에 대해 동일한 이름의 메서드를 호출하도록 설정함 -->
+	        URL 요청명에 대해 동일한 이름의 메서드를 호출하도록 설정함
 	        <props>
 		        <prop key="/member/listMembers.do" >listMembers</prop>
 	          	<prop key="/member/addMember.do" >addMember</prop>
@@ -146,5 +146,45 @@
             	<prop key="/member/*.do">memberController</prop>
          	</props>
       	</property>
+   	</bean> -->
+<!-- /pro24용 -->
+
+<!-- pro25용(트랜잭션)입니다. -->
+   	<bean id="viewResolver" 
+	class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
+		<property  name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+	    <!-- URL요청명에 대해 /WEB-INF/views 폴더의 JSP를 선택함 -->
+	    <property  name="prefix" value="/WEB-INF/views/pro25/" />
+	    <property  name="suffix" value=".jsp" />
+	</bean>
+
+	<bean id="accController" 
+	class="com.spring.pro25account.AccountController">
+    	<!-- accController빈에 methodNameResolver빈과 accService빈을 주입함 -->
+    	<property name="methodNameResolver">
+        	<ref local="methodResolver"/>
+      	</property>
+      	
+      	<property name="accService" ref="accService"/>
+	</bean>
+
+    <bean  id="methodResolver"
+   	class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver" >
+     	<property  name="mappings" >
+	        <!-- URL 요청명에 대해 동일한 이름의 메서드를 호출하도록 설정함 -->
+	        <props>
+		        <prop key="/account/sendMoney.do" >sendMoney</prop>
+       		</props>
+		</property>
    	</bean>
+   
+   	<bean id="urlMapping"
+    class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+    	<property name="mappings">
+        	<props>
+            	<prop key="/account/*.do">accController</prop>
+         	</props>
+      	</property>
+   	</bean>
+   	
 </beans>
