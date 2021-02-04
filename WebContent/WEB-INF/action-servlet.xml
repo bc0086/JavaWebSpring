@@ -150,17 +150,17 @@
 <!-- /pro24용 -->
 
 <!-- pro25용(트랜잭션)입니다. -->
-   	<bean id="viewResolver" 
+   	<!-- <bean id="viewResolver" 
 	class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
 		<property  name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
-	    <!-- URL요청명에 대해 /WEB-INF/views 폴더의 JSP를 선택함 -->
+	    URL요청명에 대해 /WEB-INF/views 폴더의 JSP를 선택함
 	    <property  name="prefix" value="/WEB-INF/views/pro25/" />
 	    <property  name="suffix" value=".jsp" />
 	</bean>
 
 	<bean id="accController" 
 	class="com.spring.pro25account.AccountController">
-    	<!-- accController빈에 methodNameResolver빈과 accService빈을 주입함 -->
+    	accController빈에 methodNameResolver빈과 accService빈을 주입함
     	<property name="methodNameResolver">
         	<ref local="methodResolver"/>
       	</property>
@@ -171,7 +171,7 @@
     <bean  id="methodResolver"
    	class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver" >
      	<property  name="mappings" >
-	        <!-- URL 요청명에 대해 동일한 이름의 메서드를 호출하도록 설정함 -->
+	        URL 요청명에 대해 동일한 이름의 메서드를 호출하도록 설정함
 	        <props>
 		        <prop key="/account/sendMoney.do" >sendMoney</prop>
        		</props>
@@ -185,6 +185,21 @@
             	<prop key="/account/*.do">accController</prop>
          	</props>
       	</property>
-   	</bean>
+   	</bean> -->
    	
+<!-- pro26용 입니다. -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    	<property name="prefix" value="/WEB-INF/views/pro26/" />
+      	<property name="suffix" value=".jsp"/>
+   	</bean>
+   		<!-- URL요청명에 대해 /WEB-INF/views 폴더의 JSP를 선택함 -->
+
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
+  		<!-- 클래스레벨에 @requestMapping을 처리함 -->
+  	
+  	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
+   		<!-- 메서드레벨에 @requestMapping을 처리함 -->
+   	
+   	<context:component-scan base-package="com.spring"/>
+   		<!-- com.spring 패키지에 존재하는 클래스에 애너테이션이 적용되도록 설정함 -->
 </beans>
